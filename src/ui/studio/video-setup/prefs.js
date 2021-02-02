@@ -20,8 +20,15 @@ import {
   stopUserCapture
 } from '../capturer';
 
+var frateGlobal = 0;
+
 export const frameRateWindows = (frate)=>{
-  console.log(frate)
+  frateGlobal = frate;
+  console.log('Selecte dFrame Rate is : ' +frateGlobal)
+}
+
+const getSelectedFrameRate =() =>{
+  return frateGlobal;
 }
 
 // Creates a valid constraints object from the given preferences. The mapping
@@ -268,7 +275,7 @@ const StreamInfo = ({ stream }) => {
   const s = stream?.getVideoTracks()?.[0]?.getSettings();
 
   const sizeInfo = (s && s.width && s.height) ? `${s.width}×${s.height}` : '';
-  const fpsInfo = (s && s.frameRate/3) ? `${s.frameRate/3} fps` : '';
+  const fpsInfo = (s && frateGlobal) ? `${frateGlobal} fps` : '';
 
 //  setTimeout(()=>{
     console.log('S is :'+s)
@@ -349,7 +356,7 @@ const UniveralSettings = ({ isDesktop, updatePrefs, prefs, stream, settings }) =
 
 
     {/* Frame rate is bellow */}
-    <PrefKey>Frame rate*:</PrefKey>
+    {/* <PrefKey>Frame rate*:</PrefKey> */}
 
     <form method="POST">
       <PrefValue>
@@ -362,7 +369,7 @@ const UniveralSettings = ({ isDesktop, updatePrefs, prefs, stream, settings }) =
           onChange={changeFrameRate}
           checked={qualities.every(f => customFrameRate !== f)}
         /> */}
-        {
+        {/* {
           customFrameRate.map(f => <Fragment key={`${f}-${kind}`}>
             <wbr />
               <RadioButton
@@ -374,7 +381,7 @@ const UniveralSettings = ({ isDesktop, updatePrefs, prefs, stream, settings }) =
                 state={fitState}
               />
           </Fragment>)
-        }
+        } */}
 
       </PrefValue>
       </form>

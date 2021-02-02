@@ -191,6 +191,18 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
     console.log('Value is : ' +e.target.value)
   }
 
+  const updateScreenFPS = (e) =>{
+    setScreenFps(e.target.value);
+  }
+
+  const updateCameraFps = (e) =>{
+    setCameraFps(e.target.value);
+  }
+
+  const updateBothFps = (e) =>{
+    setBothFps(e.target.value);
+  }
+
   const { t } = useTranslation();
 
   const settings = useSettings();
@@ -211,7 +223,9 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
     //OptionChoose(userHasWebcam);  
 
       //  <OptionChoose/>
-      frameRateWindows(10);
+      frameRateWindows(bothFps);
+
+      
     setActiveSource(VIDEO_SOURCE_BOTH);
     await startUserCapture(dispatch, settings, userConstraints);
     await Promise.all([
@@ -276,7 +290,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
         }}
       >
   
-        <button
+        {/* <button
           sx={{
           appearance: 'none',
           display: 'inline-block',
@@ -295,9 +309,16 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
           onClick={close}
         >
         &times;
-        </button>
+        </button> */}
 
-        <div><Styled.h1> Modal Title</Styled.h1></div>
+        <div>
+          <Styled.h1
+            sx={{
+              textAlign:'center',
+              mb:25
+            }}
+          >
+             Configure your output</Styled.h1></div>
 
 
 
@@ -312,12 +333,44 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
             sx={{
               mt:10
             }}
+            onChange={updateBothFps}
            >
               <option value="">Select FPS</option>
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="30">30</option>
            </Select>
+          
+          }
+
+
+
+          {(videoType === "DUAL") &&
+
+          <div>
+           <Select
+            sx={{
+              mt:10
+            }}
+           >
+              <option value="">Select FPS for PC Screen</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+           </Select>
+
+           <Select
+            sx={{
+              mt:10
+            }}
+           >
+              <option value="">Select FPS for Web Cam</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+           </Select>
+
+           </div>
           
           }
 
@@ -365,7 +418,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
                   py: 2,
                   border: 0,
                   borderRadius: 4,
-                  variant: 'buttons.dark',
+                  variant: 'buttons.danger',
                   }}
 
             onClick={() => {
