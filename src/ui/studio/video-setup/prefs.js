@@ -20,6 +20,9 @@ import {
   stopUserCapture
 } from '../capturer';
 
+export const frameRateWindows = (frate)=>{
+  console.log(frate)
+}
 
 // Creates a valid constraints object from the given preferences. The mapping
 // is as follows:

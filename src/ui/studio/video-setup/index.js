@@ -15,8 +15,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-
+import { Fragment, useEffect, useState } from 'react';
 import { OptionChoose }  from './option_choose';
+import { frameRateWindows } from './prefs';
+
 
 import {
   useDispatch,
@@ -44,6 +46,12 @@ import { render } from '@testing-library/react';
 
 
 export default function VideoSetup({ nextStep, userHasWebcam }) {
+
+
+
+
+
+
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -171,6 +179,18 @@ export default function VideoSetup({ nextStep, userHasWebcam }) {
 }
 
 const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints, userHasWebcam }) => {
+
+
+  const [videoType,setVideoType] = useState('');
+  const [scrennFps,setScreenFps] = useState('');
+  const [cameraFps,setCameraFps] = useState('');
+  const [bothFps,setBothFps] = useState('');
+
+  const updateVideoType = (e) =>{
+    setVideoType(e.target.value);
+    console.log('Value is : ' +e.target.value)
+  }
+
   const { t } = useTranslation();
 
   const settings = useSettings();
@@ -191,7 +211,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
     //OptionChoose(userHasWebcam);  
 
       //  <OptionChoose/>
-    
+      frameRateWindows(10);
     setActiveSource(VIDEO_SOURCE_BOTH);
     await startUserCapture(dispatch, settings, userConstraints);
     await Promise.all([
@@ -204,6 +224,10 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
   if (!displaySupported && !userSupported) {
     return <Notification isDanger>{t('sources-video-none-available')}</Notification>;
   }
+
+
+
+
 
   return <React.Fragment>
     <Spacer />
@@ -277,11 +301,25 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
 
 
 
-          <Select>
-            <option value="10">10 FPS</option>
-            <option value="20">20 FPS</option>
-            <option value="30">30 FPS</option>
+          <Select onChange={updateVideoType}>
+            <option value="">Select Diliverable Type</option>
+            <option value="SINGLE">Picture IN Picture Clip</option>
+            <option value="DUAL">Dual Clips</option>
           </Select>
+
+          {(videoType === "SINGLE") &&
+           <Select
+            sx={{
+              mt:10
+            }}
+           >
+              <option value="">Select FPS</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+           </Select>
+          
+          }
 
 
         <div
