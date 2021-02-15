@@ -19,16 +19,18 @@ import {
   stopDisplayCapture,
   stopUserCapture
 } from '../capturer';
+import { faSadCry } from '../../../../node_modules/@fortawesome/free-solid-svg-icons/index';
 
-var frateGlobal = 0;
+let frateScreen_Global = 0;
+let frateCam_Global = 0;
 
-export const frameRateWindows = (frate)=>{
-  frateGlobal = frate;
-  console.log('Selecte dFrame Rate is : ' +frateGlobal)
+export const frameRateWindows = (frateScreen,frateWebCam)=>{
+  frateScreen_Global = frateScreen;
+  frateCam_Global = frateWebCam;
 }
 
 const getSelectedFrameRate =() =>{
-  return frateGlobal;
+  //return frateGlobal;
 }
 
 // Creates a valid constraints object from the given preferences. The mapping
@@ -140,15 +142,17 @@ export const StreamSettings = ({ isDesktop, stream }) => {
     if (isDesktop) {
       window.localStorage.setItem(DISPLAY_QUALITY_KEY, merged.quality);
 
+      console.log("Is Desktop : " +isDesktop);
+      
       stopDisplayCapture(stream, dispatch);
-      startDisplayCapture(dispatch, settings, constraints);
+      startDisplayCapture(dispatch, settings, constraints,frateScreen_Global);
     } else {
       window.localStorage.setItem(LAST_VIDEO_DEVICE_KEY, merged.deviceId);
       window.localStorage.setItem(CAMERA_ASPECT_RATIO_KEY, merged.aspectRatio);
       window.localStorage.setItem(CAMERA_QUALITY_KEY, merged.quality);
 
       stopUserCapture(stream, dispatch);
-      startUserCapture(dispatch, settings, constraints);
+      startUserCapture(dispatch, settings, constraints,frateCam_Global);
     }
   };
 
@@ -275,12 +279,8 @@ const StreamInfo = ({ stream }) => {
   const s = stream?.getVideoTracks()?.[0]?.getSettings();
 
   const sizeInfo = (s && s.width && s.height) ? `${s.width}×${s.height}` : '';
-  const fpsInfo = (s && frateGlobal) ? `${frateGlobal} fps` : '';
-
-//  setTimeout(()=>{
-    console.log('S is :'+s)
-//  },1000)
-
+  const fpsInfo = (s && s.frameRate) ? `${s.frameRate} fps` : '';
+  
   return s ? [sizeInfo, fpsInfo].join(', ') : '...';
 };
 
@@ -311,6 +311,8 @@ const UniveralSettings = ({ isDesktop, updatePrefs, prefs, stream, settings }) =
   const [ customFrameRate, setCustomFrameRate ] = useState(
     [10,20,30]
   )
+
+  console.log('Stream is from Universal settings : ' +stream);
 
   const kind = isDesktop ? 'desktop' : 'user';
 

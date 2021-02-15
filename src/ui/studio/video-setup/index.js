@@ -50,8 +50,6 @@ export default function VideoSetup({ nextStep, userHasWebcam }) {
 
 
 
-
-
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -182,8 +180,8 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
 
 
   const [videoType,setVideoType] = useState('');
-  const [scrennFps,setScreenFps] = useState('');
-  const [cameraFps,setCameraFps] = useState('');
+  const [scrennFps,setScreenFps] = useState(0);
+  const [cameraFps,setCameraFps] = useState(0);
   const [bothFps,setBothFps] = useState('');
 
   const updateVideoType = (e) =>{
@@ -203,6 +201,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
     setBothFps(e.target.value);
   }
 
+
   const { t } = useTranslation();
 
   const settings = useSettings();
@@ -217,20 +216,23 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
   };
   const clickDisplay = async () => {
     setActiveSource(VIDEO_SOURCE_DISPLAY);
-    await startDisplayCapture(dispatch, settings, displayConstraints);
+    await startDisplayCapture(dispatch, settings, displayConstraints,scrennFps);
   };
   const clickBoth = async () => {
-    //OptionChoose(userHasWebcam);  
 
-      //  <OptionChoose/>
-      frameRateWindows(bothFps);
-
-      
+      if(videoType === "SINGLE"){
+        frameRateWindows(bothFps,bothFps);
+      }
+      else if(videoType === "DUAL"){
+        frameRateWindows(scrennFps,cameraFps);
+      }
+       
     setActiveSource(VIDEO_SOURCE_BOTH);
-    await startUserCapture(dispatch, settings, userConstraints);
+    
+    await startUserCapture(dispatch, settings, userConstraints,cameraFps);
     await Promise.all([
       queryMediaDevices(dispatch),
-      startDisplayCapture(dispatch, settings, displayConstraints),
+      startDisplayCapture(dispatch, settings, displayConstraints,scrennFps),
     ]);
   };
 
@@ -352,6 +354,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
             sx={{
               mt:10
             }}
+            onChange={updateScreenFPS}
            >
               <option value="">Select FPS for PC Screen</option>
               <option value="10">10</option>
@@ -363,6 +366,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
             sx={{
               mt:10
             }}
+            onChange={updateCameraFps}
            >
               <option value="">Select FPS for Web Cam</option>
               <option value="10">10</option>

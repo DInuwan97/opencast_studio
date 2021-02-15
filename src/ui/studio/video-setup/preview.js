@@ -51,6 +51,7 @@ export const SourcePreview = ({ warnings, inputs }) => {
 }
 
 const StreamPreview = ({ input, text }) => (
+
   <Card sx={{ height: '100%', overflow: 'hidden' }}>
     <PreviewVideo input={input} />
     <StreamSettings isDesktop={input.isDesktop} stream={input.stream} />

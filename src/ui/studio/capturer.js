@@ -27,12 +27,12 @@ export async function startAudioCapture(dispatch, deviceId = null) {
   }
 }
 
-export async function startDisplayCapture(dispatch, settings, videoConstraints = {}) {
-  const maxFps = settings.display?.maxFps
-    ? { frameRate: { max: settings.display.maxFps } }
+export async function startDisplayCapture(dispatch, settings, videoConstraints = {},fRate) {
+  const maxFps = fRate
+    ? { frameRate: { max: fRate } }
     : {};
   const height = mergeHeightConstraint(settings.display?.maxHeight, videoConstraints);
-
+  console.log('Display FrameRAte : ' +fRate);
   const constraints = {
     video: {
       cursor: 'always',
@@ -41,11 +41,11 @@ export async function startDisplayCapture(dispatch, settings, videoConstraints =
       ...height,
     },
     audio: false,
-    fRate : 20
+    //fRate : 20
   };
 
   setTimeout(()=>{
-    console.log('Frame Rate : ' +maxFps);
+    console.log('Frame Rate startDisplayCapture : ' +"70");
   },1000)
 
   try {
@@ -65,9 +65,9 @@ export async function startDisplayCapture(dispatch, settings, videoConstraints =
   }
 }
 
-export async function startUserCapture(dispatch, settings, videoConstraints) {
-  const maxFps = settings.camera?.maxFps
-    ? { frameRate: { max: settings.camera.maxFps } }
+export async function startUserCapture(dispatch, settings, videoConstraints,fRate) {
+  const maxFps = fRate
+    ? { frameRate: { max: fRate } }
     : {};
   const height = mergeHeightConstraint(settings.camera?.maxHeight, videoConstraints, 1080);
 

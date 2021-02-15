@@ -36,7 +36,7 @@ function App({ settingsManager, userHasWebcam }) {
 const Routes = ({ settingsManager, userHasWebcam }) => {
   const [activeStep, updateActiveStep] = useState(0);
   const location = useLocation();
-
+  
   return (
     <Fragment>
       <PreventClose />
