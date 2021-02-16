@@ -211,7 +211,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
 
   const clickUser = async () => {
     setActiveSource(VIDEO_SOURCE_USER);
-    await startUserCapture(dispatch, settings, userConstraints);
+    await startUserCapture(dispatch, settings, userConstraints,cameraFps);
     await queryMediaDevices(dispatch);
   };
   const clickDisplay = async () => {
@@ -243,8 +243,6 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
 
 
 
-
-
   return <React.Fragment>
     <Spacer />
     <Flex
@@ -263,13 +261,113 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
         },
       }}
     >
-      { (displaySupported || !onMobileDevice()) && <OptionButton
+
+      <Popup
+      trigger = { (displaySupported || !onMobileDevice()) && <OptionButton
         label={t('sources-scenario-display')}
         img="https://img.icons8.com/fluent-systems-filled/96/4a90e2/monitor.png"
         backgroundColor={''}
-        onClick={clickDisplay}
         disabledText={displaySupported ? false : t('sources-video-display-not-supported')}
       />}
+      modal
+      nested>
+
+
+
+      {close => (
+      <div
+        sx={{
+          p:20,
+          borderRadius:10
+        }}
+      >
+  
+        <div>
+          <Styled.h1
+            sx={{
+              textAlign:'center',
+              mb:25
+            }}
+          >
+             Configure your output</Styled.h1></div>
+
+           <Select
+            sx={{
+              mt:10
+            }}
+            onChange={updateScreenFPS}
+           >
+              <option value="">Select FPS</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+           </Select>
+          
+
+        <div
+        sx={{
+          mt:20
+        }}
+        >
+
+        <button 
+           sx={{
+            appearance: 'none',
+            display: 'inline-block',
+            textAlign: 'center',
+            lineHeight: 'inherit',
+            textDecoration: 'none',
+            fontSize: 'inherit',
+            fontWeight: 'bold',
+            m: 0,
+            px: 3,
+            py: 2,
+            border: 0,
+            borderRadius: 4,
+            variant: 'buttons.primary',
+            }}
+            onClick={clickDisplay}
+         >
+      
+         NEXT
+        </button>
+
+
+
+        <button
+                 sx={{
+                  appearance: 'none',
+                  display: 'inline-block',
+                  textAlign: 'center',
+                  lineHeight: 'inherit',
+                  textDecoration: 'none',
+                  fontSize: 'inherit',
+                  fontWeight: 'bold',
+                  ml: 430,
+                  px: 3,
+                  py: 2,
+                  border: 0,
+                  borderRadius: 4,
+                  variant: 'buttons.danger',
+                  }}
+
+            onClick={() => {
+              console.log('modal closed ');
+              close();
+            }}
+          >
+            CLOSE
+          </button>
+        </div>
+
+
+      </div>
+    )}
+
+    </Popup>
+
+
+
 
       <Popup
       trigger = { (displaySupported || !onMobileDevice()) && userSupported && <OptionButton
@@ -293,26 +391,6 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
         }}
       >
   
-        {/* <button
-          sx={{
-          appearance: 'none',
-          display: 'inline-block',
-          textAlign: 'center',
-          lineHeight: 'inherit',
-          textDecoration: 'none',
-          fontSize: 'inherit',
-          fontWeight: 'bold',
-          m: 0,
-          px: 3,
-          py: 2,
-          border: 0,
-          borderRadius: 4,
-          variant: 'buttons.danger',
-          }}
-          onClick={close}
-        >
-        &times;
-        </button> */}
 
         <div>
           <Styled.h1
@@ -442,12 +520,114 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
       </Popup>
 
 
-      { userSupported && <OptionButton
+
+      <Popup
+      trigger = { userSupported && <OptionButton
         label={t('sources-scenario-user')}
         img="https://img.icons8.com/metro/52/4a90e2/camera.png"
         onClick={clickUser}
         disabledText={userHasWebcam ? false : t('sources-video-no-cam-detected')}
       />}
+      modal
+      nested>
+
+
+
+      {close => (
+      <div
+        sx={{
+          p:20,
+          borderRadius:10
+        }}
+      >
+  
+        <div>
+          <Styled.h1
+            sx={{
+              textAlign:'center',
+              mb:25
+            }}
+          >
+             Configure your output</Styled.h1></div>
+
+           <Select
+            sx={{
+              mt:10
+            }}
+            onChange={updateCameraFps}
+           >
+              <option value="">Select FPS</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+           </Select>
+          
+
+        <div
+        sx={{
+          mt:20
+        }}
+        >
+
+        <button 
+           sx={{
+            appearance: 'none',
+            display: 'inline-block',
+            textAlign: 'center',
+            lineHeight: 'inherit',
+            textDecoration: 'none',
+            fontSize: 'inherit',
+            fontWeight: 'bold',
+            m: 0,
+            px: 3,
+            py: 2,
+            border: 0,
+            borderRadius: 4,
+            variant: 'buttons.primary',
+            }}
+            onClick={clickUser}
+         >
+      
+         NEXT
+        </button>
+
+
+
+        <button
+                 sx={{
+                  appearance: 'none',
+                  display: 'inline-block',
+                  textAlign: 'center',
+                  lineHeight: 'inherit',
+                  textDecoration: 'none',
+                  fontSize: 'inherit',
+                  fontWeight: 'bold',
+                  ml: 430,
+                  px: 3,
+                  py: 2,
+                  border: 0,
+                  borderRadius: 4,
+                  variant: 'buttons.danger',
+                  }}
+
+            onClick={() => {
+              console.log('modal closed ');
+              close();
+            }}
+          >
+            CLOSE
+          </button>
+        </div>
+
+
+      </div>
+    )}
+
+
+      </Popup>
+
+
+
     </Flex>
     <Spacer />
   </React.Fragment>;
