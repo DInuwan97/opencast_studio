@@ -23,10 +23,13 @@ import { faSadCry } from '../../../../node_modules/@fortawesome/free-solid-svg-i
 
 let frateScreen_Global = 0;
 let frateCam_Global = 0;
+let videoType_Global = "";
 
-export const frameRateWindows = (frateScreen,frateWebCam)=>{
+export const frameRateWindows = (frateScreen,frateWebCam,videoType)=>{
   frateScreen_Global = frateScreen;
   frateCam_Global = frateWebCam;
+  videoType_Global = videoType;
+  console.log("Frame type is : " +videoType_Global)
 }
 
 const getSelectedFrameRate =() =>{
@@ -279,9 +282,18 @@ const StreamInfo = ({ stream }) => {
   const s = stream?.getVideoTracks()?.[0]?.getSettings();
 
   const sizeInfo = (s && s.width && s.height) ? `${s.width}×${s.height}` : '';
-  const fpsInfo = (s && s.frameRate) ? `${s.frameRate} fps` : '';
   
+
+ if(videoType_Global === 'SINGLE'){
+  const fpsInfo = (s && frateScreen_Global) ? `${frateScreen_Global} fps` : '';
   return s ? [sizeInfo, fpsInfo].join(', ') : '...';
+ }
+ else{
+  const fpsInfo = (s && s.frameRate) ? `${s.frameRate} fps` : '';
+  return s ? [sizeInfo, fpsInfo].join(', ') : '...';
+ }
+  
+ 
 };
 
 const PrefKey = ({ children }) => (

@@ -14,6 +14,7 @@ import Header from './ui/header';
 import Studio from './ui/studio/page';
 import SettingsPage from './ui/settings/page';
 import Warnings from './ui/warnings';
+import { SignUp } from './ui/studio/SignUp/SignUp';
 
 
 function App({ settingsManager, userHasWebcam }) {
@@ -47,6 +48,10 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
 
         <Route path="/about" exact>
           <About />
+        </Route>
+
+        <Route path="/register" exact>
+          <SignUp />
         </Route>
 
         <Route path="/" exact>

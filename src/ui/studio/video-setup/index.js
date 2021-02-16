@@ -221,10 +221,10 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
   const clickBoth = async () => {
 
       if(videoType === "SINGLE"){
-        frameRateWindows(bothFps,bothFps);
+        frameRateWindows(bothFps,bothFps,videoType);
       }
       else if(videoType === "DUAL"){
-        frameRateWindows(scrennFps,cameraFps);
+        frameRateWindows(scrennFps,cameraFps,videoType);
       }
        
     setActiveSource(VIDEO_SOURCE_BOTH);
@@ -265,7 +265,8 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
     >
       { (displaySupported || !onMobileDevice()) && <OptionButton
         label={t('sources-scenario-display')}
-        icon={faChalkboard}
+        img="https://img.icons8.com/fluent-systems-filled/96/4a90e2/monitor.png"
+        backgroundColor={''}
         onClick={clickDisplay}
         disabledText={displaySupported ? false : t('sources-video-display-not-supported')}
       />}
@@ -273,7 +274,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
       <Popup
       trigger = { (displaySupported || !onMobileDevice()) && userSupported && <OptionButton
         label={t('sources-scenario-display-and-user')}
-        icon={faChalkboardTeacher}
+        img={'https://img.icons8.com/pastel-glyph/64/4a90e2/cinema-screen.png'}
         onClick={clickBoth}
         disabledText={
           displaySupported
@@ -443,7 +444,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
 
       { userSupported && <OptionButton
         label={t('sources-scenario-user')}
-        icon={faUser}
+        img="https://img.icons8.com/metro/52/4a90e2/camera.png"
         onClick={clickUser}
         disabledText={userHasWebcam ? false : t('sources-video-no-cam-detected')}
       />}
@@ -452,25 +453,28 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
   </React.Fragment>;
 };
 
-const OptionButton = ({ icon, label, onClick, disabledText = false }) => {
+const OptionButton = ({ img, label, onClick, disabledText = false }) => {
   const disabled = disabledText !== false;
 
   return (
     <button
+      
       onClick={onClick}
       disabled={disabled}
       title={label}
       sx={{
         fontFamily: 'inherit',
+       
         color: disabled ? 'gray.2' : 'gray.0',
-        border: theme => `2px solid ${disabled ? theme.colors.gray[2] : 'black'}`,
+        border: theme => `3px solid ${disabled ? theme.colors.blue[2] : '#19BCDC'}`,
         backgroundColor: 'gray.4',
+        
         borderRadius: '8px',
         flex: ['1 1 auto', '0 1 100%'],
-        minWidth: '180px',
-        maxWidth: '300px',
+        minWidth: '150px',
+        maxWidth: '180px',
         minHeight: '120px',
-        maxHeight: '250px',
+        maxHeight: '160px',
         p: 2,
         '&:hover': disabled ? {} : {
           boxShadow: theme => `0 0 10px ${theme.colors.gray[2]}`,
@@ -479,9 +483,16 @@ const OptionButton = ({ icon, label, onClick, disabledText = false }) => {
       }}
     >
       <div sx={{ display: 'block', textAlign: 'center', mb: 3 }}>
-        <FontAwesomeIcon icon={icon} size="3x"/>
+      <img src={img} 
+        style={{
+          minWidth: '80px',
+          maxWidth: '120px',
+          minHeight: '80px',
+          maxHeight: '120px',
+        }}
+      ></img>
       </div>
-      <div sx={{ fontSize: 4 }}>{label}</div>
+      <div sx={{ fontSize: 2 , fontWeight:'bold' }}>{label}</div>
       <div sx={{ fontSize: 2, mt: 1 }}>{disabledText}</div>
     </button>
   );

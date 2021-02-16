@@ -37,7 +37,7 @@ export default function Header() {
           the parent element, as the navigation overlay would otherwise occlude
           this background color */}
       <div sx={{
-        backgroundColor: 'gray.0',
+        backgroundColor: '#19BCDC',
         position: 'absolute',
         zIndex: -3,
         height: '100%',
@@ -47,7 +47,7 @@ export default function Header() {
       {/* This div is an overlay that is shown when a recording is currently active.
           This prevents the user from visiting other pages while recording. */}
       { isRecording && <div sx={{
-        backgroundColor: 'gray.0',
+        backgroundColor: '#19BCDC',
         position: 'absolute',
         zIndex: 20,
         height: '100%',
@@ -94,7 +94,7 @@ const NavElement = ({ target, children, icon, ...rest }) => {
       }}
       exact
       activeStyle={{
-        backgroundColor: 'black',
+        backgroundColor: '#19BCDC',
       }}
       sx={{
         color: 'white',
@@ -180,7 +180,7 @@ const Navigation = props => {
           top: [theme => theme.heights.headerHeight, theme => theme.heights.headerHeight, 0],
           position: ['absolute', 'static'],
           width: ['100%', 'auto'],
-          backgroundColor: ['gray.0', 'none'],
+          backgroundColor: ['DodgerBlue', 'none'],
           transition: ['height 0.25s ease-out 0s', 'none'],
           scrollX: ['none', 'auto'],
         }}
