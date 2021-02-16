@@ -405,8 +405,8 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
 
           <Select onChange={updateVideoType}>
             <option value="">Select Diliverable Type</option>
-            <option value="SINGLE">Picture IN Picture Clip</option>
-            <option value="DUAL">Dual Clips</option>
+            <option value="SINGLE">Match Same FPS</option>
+            <option value="DUAL">Select Different FPS s</option>
           </Select>
 
           {(videoType === "SINGLE") &&

@@ -1,7 +1,7 @@
 //; -*- mode: rjsx;-*-
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-
+import Avatar from "react-avatar";
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,8 @@ import {
   faWrench,
   faInfoCircle,
   faVideo,
+  faUser,
+  faLogin
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useStudioState } from '../studio-state';
@@ -209,6 +211,27 @@ const Navigation = props => {
         >
           {t('nav-about')}
         </NavElement>
+
+        <NavElement
+          title={'SignUp'}
+          target="/register"
+          icon={faUser}
+        >
+          {'Sign Up'}
+        </NavElement>
+
+        <NavElement
+          title={'SignIn'}
+          target="/login"
+        >
+          {'Sign In'}
+        </NavElement>
+
+
+        <NavElement>
+        <Avatar  round="60%" size='40' name={"Dinuwan Kalubowila"} style={{marginRight:5}}/> Hello Dinuwan
+      </NavElement>
+
       </nav>
 
       {/* A black, half-transparent overlay over the body */}
