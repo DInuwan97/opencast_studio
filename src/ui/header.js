@@ -17,10 +17,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useStudioState } from '../studio-state';
-
+import jwt_decode from "jwt-decode";
 
 // The header, including a logo on the left and the navigation on the right.
 export default function Header() {
+
+
   const { isRecording } = useStudioState();
 
   return (
@@ -137,6 +139,58 @@ const Navigation = props => {
   const closeMenu = () => updateIsOpened(false);
   const { t } = useTranslation();
 
+
+
+  const[firstName,setFirstName] = useState('');
+  const[lastName,setLastName] = useState('');
+  const [userType, setuserType] = useState('');
+
+  if (localStorage.getItem("userLoginToken") !== null) {
+
+    const token = localStorage.userLoginToken;
+    const decoded = jwt_decode(token);
+
+    setTimeout(()=>{
+      setFirstName(decoded.firstName);
+      setLastName(decoded.lastName);
+      setuserType(decoded.userType);
+    },100)
+    
+  }
+
+  const logOut = () =>{
+    localStorage.removeItem("userLoginToken");  
+    setTimeout(()=>{
+      window.location.replace("/login");
+    },50)
+  }
+
+  const userLink = (
+    <div>
+        <NavElement
+      title={'SignUp'}
+      target="/register"
+      icon={faUser}
+    >
+      {'Sign Up'}
+    </NavElement>
+
+    <NavElement
+      title={'SignIn'}
+      target="/login"
+    >
+      {'Sign In'}
+     </NavElement>
+      </div>
+  )
+
+  const profileLink = (
+    <NavElement>
+    <Avatar  round="60%" size='40' name={firstName+ ' ' +lastName} style={{marginRight:5}}/> Hello {firstName}
+  </NavElement>
+  )
+
+
   return (
     <Fragment>
       <button
@@ -214,25 +268,13 @@ const Navigation = props => {
           {t('nav-about')}
         </NavElement>
 
-        <NavElement
-          title={'SignUp'}
-          target="/register"
-          icon={faUser}
-        >
-          {'Sign Up'}
-        </NavElement>
-
-        <NavElement
-          title={'SignIn'}
-          target="/login"
-        >
-          {'Sign In'}
-        </NavElement>
 
 
-        <NavElement>
-        <Avatar  round="60%" size='40' name={"Dinuwan Kalubowila"} style={{marginRight:5}}/> Hello Dinuwan
-      </NavElement>
+
+        {localStorage.userLoginToken ? profileLink : userLink }
+        
+        
+
 
       </nav>
 

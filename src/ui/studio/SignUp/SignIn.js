@@ -28,7 +28,6 @@ const updatePassword = (e) =>{
 }
 
 
-
 const logUSer = () =>{
    const data = {
      email,
