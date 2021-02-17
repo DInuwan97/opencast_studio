@@ -425,7 +425,6 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
           }
 
 
-
           {(videoType === "DUAL") &&
 
           <div>
