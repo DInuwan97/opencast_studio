@@ -15,32 +15,6 @@ initially load the application and to (optionally) upload the videos to an
 Opencast instance.
 
 
-## Supported Browsers
-
-The following table depicts the current state of browser support.
-Please note that Opencast Studio uses fairly new web technologies that are not yet (fully) supported by all browsers.
-That's usually the reason for why this app does not work on a particular browser/system.
-In the table, "(✔)" means partial support and/or major bugs are still present.
-
-| OS      | Browser    | Capture Camera | Capture Screen | Record | Notes |
-| --------| ---------- | -------------- | -------------- | ------ | ----- |
-| Win10   | Chrome 77  | ✔   | ✔ | ✔   | Video file does not allow seeking ([#517](https://github.com/elan-ev/opencast-studio/issues/517))
-| Win10   | Firefox 68 | ✔   | ✔ | ✔   |
-| Win10   | Edge 79    | ✔   | ✔ | ✔   | Video file does not allow seeking ([#517](https://github.com/elan-ev/opencast-studio/issues/517))
-| Linux   | Chrome 77  | ✔   | ✔ | ✔   | Video file does not allow seeking ([#517](https://github.com/elan-ev/opencast-studio/issues/517))
-| Linux   | Firefox 68 | ✔   | ✔ | ✔   |
-| macOS   | Chrome 78  | ✔   | ✔ | ✔   | Video file does not allow seeking ([#517](https://github.com/elan-ev/opencast-studio/issues/517))
-| macOS   | Firefox 70 | ✔   | ✔ | ✔   |
-| macOS   | Safari 13  | ✔   | ✘ | ✘   | Recording seems to fail due to unsupported MIME type
-| Android | Chrome 78  | ✔   | ✘ | ✔   |
-| Android | Firefox 68 | ✔   | ✘ | ✔   |
-| iOS     | Safari     | (✘) | ✘ | (✘) | Many issues. For details see [issue #84](https://github.com/elan-ev/opencast-studio/issues/84)
-| iOS     | Firefox    | ✘   | ✘ | ✘   | Non-Safari browsers on iOS are severely limited
-| iOS     | Chrome     | ✘   | ✘ | ✘   | Non-Safari browsers on iOS are severely limited
-
-Browsers/systems not listed in this table are not currently tested by us, so they might or might not work.
-
-
 ## Usage
 
 There are mainly three ways how to use Opencast Studio.
