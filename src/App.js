@@ -14,7 +14,7 @@ import Header from './ui/header';
 import Studio from './ui/studio/page';
 import SettingsPage from './ui/settings/page';
 import Warnings from './ui/warnings';
-import { SignUp } from './ui/studio/SignUp/SignUp';
+import SignUp from './ui/studio/SignUp/SignUp';
 
 
 function App({ settingsManager, userHasWebcam }) {

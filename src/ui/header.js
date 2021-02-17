@@ -72,12 +72,14 @@ const Brand = () => {
       <picture sx={{ display: 'block', height: theme => theme.heights.headerHeight }}>
         <source
           media="(min-width: 920px)"
-          srcSet={`${process.env.PUBLIC_URL}/opencast-studio.svg`}
+          srcSet={`${process.env.PUBLIC_URL}/Eduscope Logo_2.svg`}
+          style={{width:150}}
         />
         <img
-          src={`${process.env.PUBLIC_URL}/opencast-studio-small.svg`}
+          src={`${process.env.PUBLIC_URL}/Eduscope Logo_2.svg`}
           alt="Opencast Studio"
           sx={{ height: theme => theme.heights.headerHeight }}
+          style={{width:150}}
         />
       </picture>
     </Link>
