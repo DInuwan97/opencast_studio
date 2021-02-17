@@ -13,7 +13,8 @@ import swal from 'sweetalert';
   
 export default function SignUp(){
 
-  const initialState = '';
+  
+const initialState = '';
 
 
 const [firstName, setfirstName] = useState(initialState);
