@@ -9,7 +9,6 @@ import { Beforeunload } from 'react-beforeunload';
 
 import { Provider, useStudioState, STATE_UPLOADED, STATE_UPLOADING } from './studio-state';
 
-import About from './ui/about';
 import Header from './ui/header';
 import Studio from './ui/studio/page';
 import SettingsPage from './ui/settings/page';
@@ -45,10 +44,6 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
       <Switch>
         <Route path="/settings" exact>
           <SettingsPage settingsManager={settingsManager} />
-        </Route>
-
-        <Route path="/about" exact>
-          <About />
         </Route>
 
         <Route path="/register" exact>

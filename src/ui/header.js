@@ -6,6 +6,11 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import { Styled } from 'theme-ui';
+
 import {
   faCaretDown,
   faTimes,
@@ -158,43 +163,139 @@ const Navigation = props => {
     
   }
 
-  const logOut = () =>{
-    localStorage.removeItem("userLoginToken");  
-    setTimeout(()=>{
-      window.location.replace("/login");
-    },50)
-  }
 
-  const userLink = (
-    <div>
-        <NavElement
+
+  const signupLink = (
+    
+    
+      <NavElement
       title={'SignUp'}
       target="/register"
       icon={faUser}
     >
       {'Sign Up'}
     </NavElement>
-
-    <NavElement
-      title={'SignIn'}
-      target="/login"
-    >
-      {'Sign In'}
-     </NavElement>
-      </div>
+    
+  
   )
+
+  const signinLink = (
+    
+
+         <NavElement
+    title={'SignIn'}
+    target="/login"
+    icon={faUser}
+  >
+    {'Sign In'}
+  </NavElement>
+
+ 
+
+  
+  
+
+)
+
+const logOut = () =>{
+  localStorage.removeItem("userLoginToken");  
+  setTimeout(()=>{
+    window.location.replace("/login");
+  },50)
+}
 
   const profileLink = (
 
   
+   
+
+
+
+<Popup
+      trigger = { 
+
         <NavElement>
-     <Avatar  round="60%" size='40' name={firstName+ ' ' +lastName} style={{marginRight:5}}/> Hello {firstName}
-    </NavElement>
+            <Avatar  round="60%" size='40' name={firstName+ ' ' +lastName} style={{marginRight:5}}/> 
+            Hello { firstName }
+        </NavElement>
+      }
+      modal
+      nested>
 
 
-    
 
-    
+      {close => (
+      <div
+        sx={{
+          p:20,
+          borderRadius:10
+        }}
+      >
+  
+        <div>
+        <Styled.h3
+            sx={{
+              textAlign:'center',
+              mb:10
+            }}
+          >
+          Hi {firstName}
+        </Styled.h3>
+          <Styled.h1
+            sx={{
+              textAlign:'center',
+              mb:25
+            }}
+          >
+          Do you want to Logout ?
+        </Styled.h1>
+        </div>
+
+          
+
+        <div
+        sx={{
+          mt:20
+        }}
+        >
+
+<button 
+           sx={{
+            appearance: 'none',
+            display: 'inline-block',
+            textAlign: 'center',
+            lineHeight: 'inherit',
+            textDecoration: 'none',
+            fontSize: 'inherit',
+            fontWeight: 'bold',
+            m: 0,
+            ml:'42%',
+            px: 3,
+            py: 2,
+            border: 0,
+            borderRadius: 4,
+            variant: 'buttons.danger',
+            }}
+         onClick={logOut}>
+      
+         Log Out
+        </button>
+
+
+
+  
+        </div>
+
+
+      </div>
+    )}
+
+    </Popup>
+
+
+
+  
+
   )
 
 
@@ -266,20 +367,18 @@ const Navigation = props => {
         >
           {t('nav-settings')}
         </NavElement>
-        <NavElement
-          title={t('nav-about')}
-          target="/about"
-          icon={faInfoCircle}
-          onClick={closeMenu}
-        >
-          {t('nav-about')}
-        </NavElement>
 
 
 
+     
+        {localStorage.userLoginToken ?
+          profileLink:
+          signinLink
+        }
 
-        {localStorage.userLoginToken ? profileLink : userLink }
-        
+        {localStorage.userLoginToken ? null : signupLink}
+
+
         
 
 
