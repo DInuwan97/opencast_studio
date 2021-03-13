@@ -105,7 +105,7 @@ function OpencastSettings({ settingsManager }) {
   const icon = icons[status];
 
   return (
-    <SettingsSection title={t('upload-settings-modal-header')}>
+    <SettingsSection title='Eduscope Express Connection'>
       <Box>
         {error && <Notification isDanger>{error}</Notification>}
 
