@@ -54,6 +54,7 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
           <SignIn />
         </Route>
 
+
  
           <ProtectedRoutesLoggedUser exact path = "/"
             component={()=> <Studio
@@ -61,6 +62,7 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
               updateActiveStep={updateActiveStep}
               userHasWebcam={userHasWebcam}
             />}
+
           />
 
 
