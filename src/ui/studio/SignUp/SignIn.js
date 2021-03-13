@@ -37,7 +37,7 @@ const logUSer = () =>{
    console.log(data)
 
    axios
-   .post('http://localhost:5000/api/users/login',{
+   .post('http://95.111.243.188:5000/api/users/login',{
        email:email,
        password:password
    })
