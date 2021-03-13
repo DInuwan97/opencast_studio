@@ -56,7 +56,7 @@ const addUser = () =>{
    console.log(data)
 
    return axios
-    .post('http://localhost:5000/api/users/register',{
+    .post('/users/register',{
       firstName:firstName,
       lastName:lastName,
       email:email,
