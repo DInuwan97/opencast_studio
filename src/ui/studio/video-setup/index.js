@@ -297,7 +297,7 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
             }}
             onChange={updateScreenFPS}
            >
-              <option value="">Select FPS</option>
+              <option value="">Select FPS (Frames Per Seconds)</option>
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="30">30</option>
@@ -404,9 +404,9 @@ const SourceSelection = ({ setActiveSource, userConstraints, displayConstraints,
 
 
           <Select onChange={updateVideoType}>
-            <option value="">Select Diliverable Type</option>
-            <option value="SINGLE">Match Same FPS</option>
-            <option value="DUAL">Select Different FPS s</option>
+            <option value="">Select Output Type</option>
+            <option value="SINGLE">Match Same FPS (Frames Per Seconds)</option>
+            <option value="DUAL">Select Different FPS (Frames Per Seconds)</option>
           </Select>
 
           {(videoType === "SINGLE") &&
