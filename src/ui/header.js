@@ -84,7 +84,7 @@ const Brand = () => {
         />
         <img
           src={`${process.env.PUBLIC_URL}/Eduscope Logo_2.svg`}
-          alt="Opencast Studio"
+          alt="Eduscope Express"
           sx={{ height: theme => theme.heights.headerHeight }}
           style={{width:150}}
         />
