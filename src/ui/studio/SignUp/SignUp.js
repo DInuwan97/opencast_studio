@@ -20,7 +20,7 @@ const initialState = '';
 const [firstName, setfirstName] = useState(initialState);
 const [lastName, setlastName] = useState(initialState);
 const [email, setemail] = useState(initialState);
-const [userType, setuserType] = useState(initialState);
+const [userType, setuserType] = useState('Client');
 const [password, setpassword] = useState(initialState);
 
 
@@ -103,7 +103,7 @@ const addUser = () =>{
                
         <Box p={3} bg='light' sx={{ flex: '1 1 auto' }} marginLeft={'30%'} marginRight={'30%'} marginTop={'5%'} as='form' onSubmit={e => e.preventDefault()}>
                 
-            <Styled.h1>Sign up for Opencast Studio</Styled.h1>    
+            <Styled.h1>Sign up for Eduscope Express</Styled.h1>    
 
             <Label htmlFor='firstName'>First Name</Label>
             <Input name='firstName' mb={3} value={firstName} onChange={updateFirstName}/>
@@ -113,13 +113,6 @@ const addUser = () =>{
 
             <Label htmlFor='email'>Email</Label>
             <Input name='email' mb={3} value={email} onChange={updateEmail}/>
-
-
-            <Select name="userType" onChange={updateUserType} mb={3}>
-              <option value="">Select User Type</option>
-              <option value="Client">Client</option>
-              <option value="Admin">Admin</option>
-            </Select>
 
             <Label htmlFor='password' name="" value="">Password</Label>
             <Input type='password' name='password'mb={3} onChange={updatePassword}/>

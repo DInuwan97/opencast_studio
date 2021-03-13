@@ -11,6 +11,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.13",
     "@iarna/toml": "^2.2.5",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@sentry/browser": "^5.28.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^9.5.0",
@@ -40,6 +42,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "reactjs-popup": "^2.0.4",
+    "rsuite": "^4.9.3",
     "sweetalert": "^2.1.2",
     "theme-ui": "^0.3.4",
     "use-resize-observer": "^6.1.0"
@@ -59,7 +62,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy":"http://localhost:5000/api",
+  "proxy": "http://95.111.243.188:5000/api",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -78,7 +81,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ],
-    "proxy":"http://localhost:5000/api"
+    "proxy": "http://95.111.243.188:5000/api"
   },
   "babelMacros": {
     "styledComponents": {

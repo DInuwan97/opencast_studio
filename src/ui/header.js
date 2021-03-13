@@ -185,9 +185,16 @@ const Navigation = props => {
   )
 
   const profileLink = (
-    <NavElement>
-    <Avatar  round="60%" size='40' name={firstName+ ' ' +lastName} style={{marginRight:5}}/> Hello {firstName}
-  </NavElement>
+
+  
+        <NavElement>
+     <Avatar  round="60%" size='40' name={firstName+ ' ' +lastName} style={{marginRight:5}}/> Hello {firstName}
+    </NavElement>
+
+
+    
+
+    
   )
 
 
