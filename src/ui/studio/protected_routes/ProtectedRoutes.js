@@ -22,7 +22,7 @@ export const ProtectedRoutesLoggedUser = ({
             return (
               <Redirect
                 to={{
-                  pathname: "/404NotFound",
+                  pathname: "/login",
                   state: {
                     from: props.location
                   }

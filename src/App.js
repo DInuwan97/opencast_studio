@@ -15,7 +15,7 @@ import SettingsPage from './ui/settings/page';
 import Warnings from './ui/warnings';
 import SignUp from './ui/studio/SignUp/SignUp';
 import SignIn from './ui/studio/SignUp/SignIn';
-
+import { ProtectedRoutesLoggedUser } from './ui/studio/protected_routes/ProtectedRoutes';
 
 function App({ settingsManager, userHasWebcam }) {
   return (
@@ -55,17 +55,15 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
         </Route>
 
  
-          <Studio exact path = "/"
-            
-            activeStep={activeStep}
-            updateActiveStep={updateActiveStep}
-            userHasWebcam={userHasWebcam}
+          <ProtectedRoutesLoggedUser exact path = "/"
+            component={()=> <Studio
+              activeStep={activeStep}
+              updateActiveStep={updateActiveStep}
+              userHasWebcam={userHasWebcam}
+            />}
           />
 
-{/* <ProtectedRoutesLoggedUser  exact path="/" 
-component={() => <VideoCards 
-instructorId={this.state._id} isTeacher={this.state.isTeacher} isAdmin={this.state.isAdmin} institute={this.state.institute}/>}
-/> */}
+
      
 
         <Route path="/*">
