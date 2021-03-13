@@ -113,7 +113,7 @@ function OpencastSettings({ settingsManager }) {
           { showServerUrl && <Input
             errors={errors}
             label={t('upload-settings-label-server-url')}
-            name="serverUrl"
+            name=""
             register={register}
             validate={value => {
               try {
@@ -134,7 +134,7 @@ function OpencastSettings({ settingsManager }) {
           { showUsername && <Input
             errors={errors}
             label={t('upload-settings-label-username')}
-            name="loginName"
+            name=""
             register={register}
             required
           /> }
@@ -142,7 +142,7 @@ function OpencastSettings({ settingsManager }) {
           { showPassword && <Input
             errors={errors}
             label={t('upload-settings-label-password')}
-            name="loginPassword"
+            name=""
             register={register}
             required
             type="password"

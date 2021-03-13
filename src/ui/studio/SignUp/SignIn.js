@@ -106,26 +106,7 @@ const logUSer = () =>{
                     Login 
                    </Button>
        
-       
-                   <Button mr={2}
-                           sx={{
-                               appearance: 'none',
-                               display: 'inline-block',
-                               textAlign: 'center',
-                               lineHeight: 'inherit',
-                               textDecoration: 'none',
-                               fontSize: 'inherit',
-                               fontWeight: 'bold',
-                               ml: '49%',
-                               px: 4,
-                               py: 2,
-                               border: 0,
-                               borderRadius: 4,
-                               variant: 'buttons.danger'
-                             }}
-                   >
-                    Reset   
-                   </Button>
+   
        
                </Box>
        

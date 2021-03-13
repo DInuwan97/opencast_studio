@@ -9,14 +9,13 @@ import { Beforeunload } from 'react-beforeunload';
 
 import { Provider, useStudioState, STATE_UPLOADED, STATE_UPLOADING } from './studio-state';
 
-import About from './ui/about';
 import Header from './ui/header';
 import Studio from './ui/studio/page';
 import SettingsPage from './ui/settings/page';
 import Warnings from './ui/warnings';
 import SignUp from './ui/studio/SignUp/SignUp';
 import SignIn from './ui/studio/SignUp/SignIn';
-
+import { ProtectedRoutesLoggedUser } from './ui/studio/protected_routes/ProtectedRoutes';
 
 function App({ settingsManager, userHasWebcam }) {
   return (
@@ -47,10 +46,6 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
           <SettingsPage settingsManager={settingsManager} />
         </Route>
 
-        <Route path="/about" exact>
-          <About />
-        </Route>
-
         <Route path="/register" exact>
           <SignUp />
         </Route>
@@ -59,13 +54,19 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
           <SignIn />
         </Route>
 
-        <Route path="/" >
-          <Studio
-            activeStep={activeStep}
-            updateActiveStep={updateActiveStep}
-            userHasWebcam={userHasWebcam}
+
+ 
+          <ProtectedRoutesLoggedUser exact path = "/"
+            component={()=> <Studio
+              activeStep={activeStep}
+              updateActiveStep={updateActiveStep}
+              userHasWebcam={userHasWebcam}
+            />}
+
           />
-        </Route>
+
+
+     
 
         <Route path="/*">
           <Redirect to={{ pathname: "/", search: location.search }} />
