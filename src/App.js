@@ -59,7 +59,7 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
           <SignIn />
         </Route>
 
-        <Route path="/" exact>
+        <Route path="/" >
           <Studio
             activeStep={activeStep}
             updateActiveStep={updateActiveStep}

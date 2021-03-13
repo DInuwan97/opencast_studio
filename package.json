@@ -51,7 +51,7 @@
     "type": "git",
     "url": "git+https://github.com/elan-ev/opencast-studio.git"
   },
-  "homepage": "https://studio.opencast.org",
+  "homepage": "https://express.eduscope.live",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -62,7 +62,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://95.111.243.188:5000/api",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -80,8 +79,7 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ],
-    "proxy": "http://95.111.243.188:5000/api"
+    ]
   },
   "babelMacros": {
     "styledComponents": {
