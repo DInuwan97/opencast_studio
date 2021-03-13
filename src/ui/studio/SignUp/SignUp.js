@@ -56,7 +56,7 @@ const addUser = () =>{
    console.log(data)
 
    return axios
-    .post('http://localhost:5000/api/users/register',{
+    .post('http://95.111.243.188:5000/api/users/register',{
       firstName:firstName,
       lastName:lastName,
       email:email,
