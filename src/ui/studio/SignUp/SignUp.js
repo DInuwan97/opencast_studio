@@ -69,7 +69,10 @@ const addUser = () =>{
             title: "Done",
             text: "Registered Successfully",
             icon: "success",
-            button: true,
+            button: 'OK'
+        })
+        .then(res=>{
+          window.location.replace("/login");
         })
       }
       return res.data;
