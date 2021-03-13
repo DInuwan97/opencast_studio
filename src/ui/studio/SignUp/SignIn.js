@@ -78,7 +78,7 @@ const logUSer = () =>{
                
                <Box p={3} bg='light' sx={{ flex: '1 1 auto' }} marginLeft={'30%'} marginRight={'30%'} marginTop={'5%'} as='form' onSubmit={e => e.preventDefault()}>
                        
-                   <Styled.h1>Sign In for Opencast Studio</Styled.h1>    
+                   <Styled.h1>Sign in for Eduscope Express</Styled.h1>    
                      
                    <Label htmlFor='email'>Email</Label>
                    <Input name='email' mb={3} value={email} onChange={updateEmail}/>
