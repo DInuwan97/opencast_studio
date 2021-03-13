@@ -54,13 +54,19 @@ const Routes = ({ settingsManager, userHasWebcam }) => {
           <SignIn />
         </Route>
 
-        <Route path="/" exact>
-          <Studio
+ 
+          <Studio exact path = "/"
+            
             activeStep={activeStep}
             updateActiveStep={updateActiveStep}
             userHasWebcam={userHasWebcam}
           />
-        </Route>
+
+{/* <ProtectedRoutesLoggedUser  exact path="/" 
+component={() => <VideoCards 
+instructorId={this.state._id} isTeacher={this.state.isTeacher} isAdmin={this.state.isAdmin} institute={this.state.institute}/>}
+/> */}
+     
 
         <Route path="/*">
           <Redirect to={{ pathname: "/", search: location.search }} />
