@@ -175,31 +175,31 @@ export default function SaveCreation(props) {
   const hideBack = uploadState.state !== STATE_NOT_UPLOADED || allDownloaded;
 
   // Depending on the state, show a different thing in the upload box.
-  const uploadBox = (() => {
-    const showUnconfiguredWarning = uploadState.state === STATE_NOT_UPLOADED
-      && (opencast.getState() === STATE_UNCONFIGURED || opencast.getState() === STATE_CONNECTED);
-    if (showUnconfiguredWarning) {
-      return <ConnectionUnconfiguredWarning />;
-    }
+  // const uploadBox = (() => {
+  //   const showUnconfiguredWarning = uploadState.state === STATE_NOT_UPLOADED
+  //     && (opencast.getState() === STATE_UNCONFIGURED || opencast.getState() === STATE_CONNECTED);
+  //   if (showUnconfiguredWarning) {
+  //     return <ConnectionUnconfiguredWarning />;
+  //   }
 
-    switch (uploadState.state) {
-      case STATE_UPLOADING:
-        return <UploadProgress
-          currentProgress={uploadState.currentProgress}
-          secondsLeft={uploadState.secondsLeft}
-        />;
-      case STATE_UPLOADED:
-        return <UploadSuccess />;
-      default: // STATE_NOT_UPLOADED or STATE_ERROR
-        return <UploadForm {...{ uploadState, handleUpload }} />
-    }
-  })();
+  //   switch (uploadState.state) {
+  //     case STATE_UPLOADING:
+  //       return <UploadProgress
+  //         currentProgress={uploadState.currentProgress}
+  //         secondsLeft={uploadState.secondsLeft}
+  //       />;
+  //     case STATE_UPLOADED:
+  //       return <UploadSuccess />;
+  //     default: // STATE_NOT_UPLOADED or STATE_ERROR
+  //       return null
+  //   }
+  // })();
 
   return (
     <Container sx={{ display: 'flex', flexDirection: 'column', flex: '1 0 auto' }}>
-      <Styled.h1 sx={{ textAlign: 'center', fontSize: ['26px', '30px', '32px'] }}>
+      {/* <Styled.h1 sx={{ textAlign: 'center', fontSize: ['26px', '30px', '32px'] }}>
         { possiblyDone ? t('save-creation-title-done') : t('save-creation-title') }
-      </Styled.h1>
+      </Styled.h1> */}
 
       <div sx={{
         display: 'flex',
@@ -213,12 +213,10 @@ export default function SaveCreation(props) {
         },
       }}>
         <div>
-          <Styled.h2
-            sx={{ pb: 1, borderBottom: theme => `1px solid ${theme.colors.gray[2]}` }}
-          >{t('save-creation-subsection-title-upload')}</Styled.h2>
+          
 
           <div sx={{ margin: 'auto' }}>
-            { uploadBox }
+           
           </div>
         </div>
 
@@ -355,16 +353,8 @@ const ConnectionUnconfiguredWarning = () => {
   const location = useLocation();
 
   return (
-    <Notification key="opencast-connection" isDanger>
-      <Trans i18nKey="warning-missing-connection-settings">
-        Warning.
-        <Link
-          to={{ pathname: "/settings", search: location.search }}
-          sx={{ variant: 'styles.a', color: '#ff2' }}
-        >
-          settings
-        </Link>
-      </Trans>
+    <Notification>
+     
     </Notification>
   );
 };
